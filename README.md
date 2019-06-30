@@ -2,13 +2,35 @@
 
 ## Usage
 
+
 ### 1. Install
 
 ```shell
 npm install -g oss-upload-cli
 ```
 
-### 2. Help
+### 2. Example
+
+```shell
+
+# 上传指定文件夹下的文件
+oss-upload-cli \
+    -c /data/ossconfig/aliossconfig.json \
+    -s /data/apk/ \
+    -d osspath/test/ \
+    -p "*" \
+    -q 1
+
+# 上传指定文件夹下的文件，包括子目录
+oss-upload-cli \
+    -c /data/ossconfig/aliossconfig.json \
+    -s /data/apk/ \
+    -d osspath/test/ \
+    -p "**" \
+    -q 1
+```
+
+### 3. Help
 
 ```shell
 oss-upload-cli -h
@@ -32,25 +54,4 @@ Options:
   "region":"",
   "bucket":""
 }
-```
-
-### 3. Example
-
-```shell
-
-# 上传指定文件夹下的文件
-oss-upload-cli \
-    -c /data/ossconfig/aliossconfig.json \
-    -s /data/apk/ \
-    -d osspath/test/ \
-    -p "*" \
-    -q 1
-
-# 上传指定文件夹下的文件，包括子目录
-oss-upload-cli \
-    -c /data/ossconfig/aliossconfig.json \
-    -s /data/apk/ \
-    -d osspath/test/ \
-    -p "**" \
-    -q 1
 ```
