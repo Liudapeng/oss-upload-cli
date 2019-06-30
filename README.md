@@ -1,4 +1,5 @@
 # oss-upload-cli
+![example.gif](example.gif?raw=true)
 
 ## Usage
 
