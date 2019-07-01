@@ -44,9 +44,12 @@ assert.ok(pattern, chalk.red("arg pattern value error"));
 assert.ok(destination, chalk.red("arg destination value error"));
 assert.ok(concurrency, chalk.red("arg concurrency value error"));
 
-log.success(alioss, source, pattern, destination);
+aliossPath = alioss.startsWith("/") ? alioss : `${process.cwd()}/${alioss}`;
+sourcePath = source.startsWith("/") ? source : `${process.cwd()}/${source}`;
 
-const aliossconfig = require(alioss);
+log.success(aliossPath, sourcePath, pattern, destination);
+
+const aliossconfig = require(aliossPath);
 
 const config = Object.assign(
   {
@@ -59,7 +62,7 @@ const config = Object.assign(
     internal: void 0,
     secure: void 0,
     timeout: void 0,
-    cwd: source,
+    cwd: sourcePath,
     pattern: pattern,
     destination: destination
   },
@@ -105,7 +108,7 @@ const upload = async function({ destination, source: cwd, pattern }) {
   });
 
   spinner.info(
-    `uploading ${files.length} files from ${source} to ${destination}...`
+    `uploading ${files.length} files from ${sourcePath} to ${destination}...`
   );
 
   let countSuccess = 0,
@@ -114,7 +117,7 @@ const upload = async function({ destination, source: cwd, pattern }) {
     files.map(file => async () => {
       spinner.start(`uploading: ` + file + ` to ${destination}`);
       try {
-        await store.put(`${destination}${file}`, `${source}${file}`);
+        await store.put(`${destination}${file}`, `${sourcePath}${file}`);
         countSuccess++;
         spinner.succeed(chalk.green(`uploading success: ${file}`));
       } catch (error) {
