@@ -68,7 +68,7 @@ const config = Object.assign(
   },
   aliossconfig
 );
-log.warn(JSON.stringify(config));
+// log.warn(JSON.stringify(config));
 
 if (
   _.some(
